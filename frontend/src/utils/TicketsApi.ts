@@ -3,12 +3,12 @@ import API_URL from "../../../src/config/api";
 
 export const createTicketFromForm = async (
 	ticket: FormData,
-	id_user: number,
+	id_user: string,
 ) => {
 	const payload = {
 		title: ticket.get("title"),
 		description: ticket.get("description"),
-		image: ticket.get("img") || null,
+		image: null,
 		level: ticket.get("urgence"),
 		id_user: id_user,
 	};

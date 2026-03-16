@@ -12,14 +12,13 @@ export const TicketPostSchema = v.object({
 		v.maxLength(100, "Title must be 100 characters or less"),
 	),
 	description: v.pipe(v.string(), v.minLength(1, "Description is required")),
-	image: v.object({}),
+	image: v.optional(v.nullable(v.string())),
 	level: v.optional(TicketLevelEnum),
 	idStatus: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1))),
 	id_user: v.pipe(
-		v.number(),
-		v.integer(),
-		v.minValue(1, "A valid user ID is required"),
-	),
+  v.string(), // 👈 was v.number()
+  v.minLength(1, "A valid user ID is required"),
+),
 });
 
 export type TicketPost = v.InferInput<typeof TicketPostSchema>;
